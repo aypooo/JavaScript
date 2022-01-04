@@ -1,0 +1,87 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+#nav{
+    position: fixed;
+    top: 0;
+    height: 150px;
+    width: 100%;
+    border:1px solid tomato;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+#menu{
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+    border:1px solid tomato;
+    margin-right: auto;
+    margin-left: 10px;
+    transition: all 0.5s;
+
+}
+#menu:hover{
+    transform: rotate(25deg);
+}
+.bar{
+    width: 80%;
+    height: 10px;
+    background: black;
+    margin: 5px auto;
+  }
+#search{
+    height: 40px;
+    width: 300px;
+    margin-right: 250px;
+    border:1px solid tomato;
+
+}
+#darkmode{
+    width: 100px;
+    height: 50px;
+    border-radius: 30px;
+    margin-right: 30px;
+    border:1px solid tomato;
+
+}
+#profile{
+    height: 100px;
+    width: 100px;
+    border:1px solid tomato;
+    
+}
+#container{
+    height: 100vh;
+    width: 100%;
+    border:1px solid darkcyan;
+    display: flex;
+    flex-direction: row;
+    border:1px solid black;
+
+}
+#photo-list {
+    width: 940px;
+    background: rgb(224, 224, 224);
+    margin: 0 auto;
+    overflow: hidden;
+  }
+/* 
+.photo-row{
+    height: 400px;
+    width: 1230px;
+    display: flex;
+    flex-direction: row;
+    border:1px solid tomato;
+    
+} */
+.photo-box{
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+    margin: 10px;
+    border:1px solid skyblue
+}
