@@ -30,18 +30,14 @@ function priceSort(a,b){
         apiDataRefined.forEach(displayProduct)
     }
 function lowerPrice(e){
-    
+    rootDiv.innerHTML =" "
     if(click === true){
-        console.log("1")
-        rootDiv.innerHTML =" "
         sortedProduct.forEach(displayProduct)
         click = false
     }
     else{
-        console.log("2")
-        rootDiv.innerHTML =" "
         apiDataRefined.forEach(displayProduct)
-        click = 
+        click = true
     }
 }
 
