@@ -1,0 +1,39 @@
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    background: lightgoldenrodyellow;
+}
+#canvas{
+    width: 60%;
+    margin: 100px auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: chocolate;
+    color: white;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    opacity: 0.5;
+    transition: all .5s;
+}
+.circle:hover{
+    opacity: 1;
+}

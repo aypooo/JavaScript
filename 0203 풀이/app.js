@@ -15,22 +15,29 @@
 // Tester.prototype = {
     
 //     satisfaction(){
-//        this.sleepSatisfaction = this.delta /(this.sleepTime*this.wakeTime*this.wakeCnt*this.turnCnt)
+//        this._sleepSatisfaction = this.delta /(this.sleepTime*this.wakeTime*this.wakeCnt*this.turnCnt)
 //     },
 
-//     getter(){
-//         return this.sleepSatisfaction
+//     get sleepSatisfaction(){
+//         return this._sleepSatisfaction
 //     }
 // }
-// const Agroup = new Array();
-// const Bgroup = new Array();
-// const Cgroup = new Array();
-// const testGroup = [Agroup,Bgroup,Cgroup]
-// let aCnt = 0
-// let bCnt = 0
-// let cCnt = 0
-// for(let group of testGroup){
-//     for(let i=0;i<100;i++){
+// function sleepQuality(qos){
+//     return qos >= 0.37 && qos<=50
+// }
+
+// function countQuality(group){
+//     let cnt = 0
+//     group.forEach(tester=>{
+//         tester.satisfaction()
+//         if(sleepQuality(tester.sleepSatisfaction))cnt++
+//     })
+//     return cnt
+// }
+
+// function createrTester(len){
+//     const group = []
+//     for(let i=0;i<len;i++){
 //         group[i] = new Tester(
 //         pickRandomNumber(1,10),
 //         pickRandomNumber(1,10),
@@ -38,22 +45,38 @@
 //         pickRandomNumber(1,10),
 //         pickRandomNumber(0,50)
 //         )
-//         group[i].satisfaction()
-//         if (group[i].getter()>0.37 && group===Agroup){
-//             aCnt++
-//         }
-//         if (group[i].getter()>0.37 && group===Bgroup){
-//             bCnt++
-//         }
-//         if (group[i].getter()>0.37 && group===Cgroup){
-//             cCnt++
-//         }
-// }
+//     }
+//     return group
 // }
 
-// console.log("A group cnt:",aCnt)
-// console.log("B group cnt:",bCnt)
-// console.log("C group cnt:",cCnt)
+
+
+// const Agroup = createrTester(100)
+// const Bgroup = createrTester(100)
+// const Cgroup = createrTester(100)
+
+// function chooseBestBed(a,b,c){
+//     const counts = [
+//         {group: 'A',cnt:a},
+//         {group: 'B',cnt:b},
+//         {group: 'C',cnt:c},
+//     ]
+//     counts.sort((c1,c2)=>c2.cnt-c1.cnt)
+    
+//     alert(`${counts[0].group} bed is choosen to a new bed this year!`)
+// }
+
+
+// chooseBestBed(
+//     countQuality(Agroup),
+//     countQuality(Bgroup),
+//     countQuality(Cgroup)
+// )
+
+
+// console.log("A group cnt:",countQuality(Agroup))
+// console.log("B group cnt:",countQuality(Bgroup))
+// console.log("C group cnt:",countQuality(Cgroup))
 
 // //2번
 // function TrainFare(station,latitude,longitude){
@@ -109,15 +132,35 @@
 // console.log(deagu.getPrice(busan)) 
 
 //3번
-function pickRandomNumber(min, max){
-    return Math.floor( Math.random() * (max-min+1) ) + min 
-}
+
 const hairColors = ['black', 'brown', 'yellow', 'white', 'gold']
 const hairTypes = ['curly', 'straight', 'wavy', 'coily']
 const glasses = [true, false]
 const heights = [150, 160, 170, 180, 190, 200]
 const weights = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150]
-const classified = {}
+
+const personNum = 10000
+const person = new Array
+const classifiedFeatures = {}
+
+function pickRandomFeature(feature){
+    return feature[Math.floor( Math.random() * feature.length)]
+}
+
+
+function displayFeatures(features){
+    const canvas = document.getElementById('canvas')
+    for(let feature in features){
+        const featureEl = document.createElement('div')
+        featureEl.className = 'circle'
+        featureEl.innerHTML=`
+            <h1>${features[feature]}</h1>
+            <div>${feature}</div>
+        `
+        canvas.appendChild(featureEl)
+    }
+}
+
 function TestUser(hairColors,hairTypes,glasses,heights,weights){
     this.hairColors = hairColors
     this.hairTypes = hairTypes
@@ -127,26 +170,36 @@ function TestUser(hairColors,hairTypes,glasses,heights,weights){
 
 }
 
-
-const person = new Array
-for(let i=0;i<10;i++){
-    person[i] = new TestUser(
-        hairColors[pickRandomNumber(0,4)],
-        hairTypes[pickRandomNumber(0,3)],
-        glasses[pickRandomNumber(0,1)],
-        heights[pickRandomNumber(0,5)],
-        weights[pickRandomNumber(0,14)]
-    )
+for(let i=0;i<personNum;i++){
+    person.push(new TestUser(
+        pickRandomFeature(hairColors),
+        pickRandomFeature(hairTypes),
+        pickRandomFeature(glasses),
+        pickRandomFeature(heights),
+        pickRandomFeature(weights)
+    ))
 
 }
 //$$$다시 보기
 person.forEach((person)=>{
     for(let feature in person){
-        console.log(classified)
-        if(!classified[person[feature]]) classified[person[feature]] = 0
-        classified[person[feature]]++
+        let featValue = person[feature]
+        switch(feature){
+            case 'glasses':
+                featValue = featValue ? 'put on glasses' : 'no glasses'
+                break
+            case 'height':
+                featValue = featValue + 'cm'
+                break
+            case 'weight':
+                featValue = featValue + 'kg'
+        }
+        if(!classifiedFeatures[person[feature]]) classifiedFeatures[person[feature]] = 0
+        classifiedFeatures[person[feature]]++
     }
     }
     
 )
-console.log(classified)
+console.log(classifiedFeatures)
+
+displayFeatures(classifiedFeatures)
