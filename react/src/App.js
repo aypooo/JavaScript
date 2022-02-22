@@ -1,16 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
-// import Friends from './0217/Friends'
-import Person from './0217/Person'
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Person/>
-      </header>
-    </div>
-  )
+import React, { Component } from 'react'
+import AppUser from './0222/AppUser'
+import Friend from './0222/Friend'
+
+class App extends Component {
+  render(){
+    return (
+      <Friend/>
+    )
+  }
+  
 }
 
 export default App;
-
