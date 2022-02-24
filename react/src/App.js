@@ -1,12 +1,14 @@
 import './App.css';
 import React, { Component } from 'react'
-import AppUser from './0222/AppUser'
-import Friend from './0222/Friend'
+import Lotto from './0224/Lotto'
+import EngCard from './0224/EngCard';
 
 class App extends Component {
   render(){
     return (
-      <Friend/>
+      <>
+     
+      </>
     )
   }
   

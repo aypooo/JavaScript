@@ -20,17 +20,14 @@ class Freind extends Component {
   }
   // 구현하기
   filterCity = (city) => {
-    let { friends} = this.state
-    {friends.map((friend)=>{
-        if (friend.city === city)
-        return <h3>이름 : {friend.name} 나이 : {friend.age} 지역 : {friend.city}</h3>
-      })}   
+    const { friends} = this.state
+    this.setState({updatedFriends:friends.filter(friend=>friend.city===city)})
   }
 
   // 구현하기
   render(){
     let { friends, updatedFriends } = this.state 
-
+    friends = updatedFriends || friends
     return (
     <>
         
